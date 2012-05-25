@@ -87,8 +87,8 @@ grails.serverURL = "http://localhost:8080"
 bluevia {
     // use your own credentials here
     // you can get tons of them in https://bluevia.com/en/knowledge/APIs.Get-your-API-key :)
-    consumer.key = 'yN12040835082146'
-    consumer.secret = 'vlyd05395292'
+    consumer.key = '__________ your consumer key here ___________'
+    consumer.secret = '__________ your consumer secret here ___________'
 
     countryCode.vivo.Brasil = '55281'
     countryCode.movistar.Spain = '34217040'
@@ -112,8 +112,8 @@ bluevia {
 evernote {
     // use your own credentials here
     // you can get tons of them in http://dev.evernote.com/ :)
-    consumer.key = 'jacortes-7919'
-    consumer.secret = '729fe152a643447a'
+    consumer.key = '__________ your consumer key here ___________'
+    consumer.secret = '__________ your consumer secret ___________'
 
     // change to 'https://www.evernote.com' when you are ready to fly
     urlBase = "https://sandbox.evernote.com"

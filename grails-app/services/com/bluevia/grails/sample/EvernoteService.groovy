@@ -14,11 +14,7 @@ class EvernoteService {
     static transactional = false
 
     private static final String REDTAPPE_NOTEBOOK_NAME = 'Redtappe'
-    private static final String PROCESSED_NOTES_TAG = 'redtappe_done'
-    private static final String PENDING_NOTES_FILTER = "notebook:$REDTAPPE_NOTEBOOK_NAME -tag:$PROCESSED_NOTES_TAG"
 
-    // TODO: Hacerlo publico. Así se puede incializar desde el controller y se pasa como parametro al resto de metodos.
-    //       Evitamos así hacer tantos inicializaciones en cada request.
     private getNoteStoreClient(String evernoteShardId) {
         String noteStoreURL = "${ConfigurationHolder.config.evernote.noteStoreURLBase}${evernoteShardId}"
         THttpClient noteStoreTrans = new THttpClient(noteStoreURL)

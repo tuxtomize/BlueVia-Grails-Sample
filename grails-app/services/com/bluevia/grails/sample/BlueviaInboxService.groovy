@@ -10,10 +10,10 @@ class BlueviaInboxService {
         blueviaService.getPendingSMSs()
     }
 
-    def processInboundSMSs(pendingSmss) {
+    def processInboundSMSs(pendingSmss, session) {
         pendingSmss.each { sms ->
             log.debug "Evernoting SMS from ${sms.fromPhoneNumber}/${sms.fromAlias} in the authorized Evernote account"
-            storeMessageInEvernoteUserAccount(sms)
+            storeMessageInEvernoteUserAccount(sms, session)
         }
     }
 
@@ -21,14 +21,14 @@ class BlueviaInboxService {
         blueviaService.getPendingMMSs()
     }
 
-    def processInboundMMSs(pendingMmss) {
+    def processInboundMMSs(pendingMmss, session) {
         pendingMmss.each { mms ->
             log.debug "Evernoting SMS from ${mms.fromPhoneNumber}/${mms.fromAlias} in the authorized Evernote account"
-            storeMessageInEvernoteUserAccount(mms)
+            storeMessageInEvernoteUserAccount(mms, session)
         }
     }
 
-    private storeMessageInEvernoteUserAccount(message) {
+    private storeMessageInEvernoteUserAccount(message, session) {
         try {
             def tags = extractTagsFromMessage(message.message)
             evernoteService.addNewNoteToNotebook(session.evernoteAccessToken, session.evernoteShardId, 

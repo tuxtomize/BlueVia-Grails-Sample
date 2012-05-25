@@ -1,61 +1,52 @@
 <html>
 <head>
     <meta name="layout" content="main" />
-    <title>Redtappe - Pending Inbound MMS's</title>
+    <title>BlueVia - MMS Inbox</title>
 </head>
 <body>
+<div class="container">
     <g:if test="${flash.message}">
-        <div class="alert-message info fade in" data-alert="alert">
-            <a class="close" href="#">×</a>
-            <p>${flash.message}</p>
+        <div class="alert alert-info">
+            ${flash.message}
         </div>
     </g:if>
     <div class="hero-unit">
-        <h2>MMS's</h2>
+        <h2>SMS's</h2>
         <br/>
-        <g:each in="${mmsList}" status="i" var="mms">
-            <div class="well" style="height: 200px;">
-                <table class="condensed-table" style="border-style: hidden;">
-                    <%--g:if test="${resourceMime?.startsWith('image/') || resourceMime?.equals('application/pdf')}"--%>
-                        <tr style="border-bottom-style: hidden;">
-                            <td rowspan="8">
-                                <img src="/images/no_image.jpg" width="140"/>
-                            </td>
-                            <td style="border-bottom-style: hidden;"></td>
-                            <td style="border-bottom-style: hidden;"></td>
-                        </tr>
-                    <%--/g:if--%>
-                    <tr>
-                        <td>Message Identifier</td>
-                        <td>${mms.messageIdentifier}</td>
-                    </tr>
-                    <tr>
-                        <td>Subject</td>
-                        <td>${mms.subject}</td>
-                    </tr>
-                    <tr>
-                        <td>Message</td>
-                        <td>${mms.message}</td>
-                    </tr>
-                    <tr>
-                        <td>Origin Alias</td>
-                        <td>${mms.fromAlias}</td>
-                    </tr>
-                    <tr>
-                        <td>Origin Phone number</td>
-                        <td>${mms.fromPhoneNumber}</td>
-                    </tr>
-                    <tr>
-                        <td>Destination Phone number</td>
-                        <td>${mms.toPhoneNumber}</td>
-                    </tr>
-                    <tr>
-                        <td>Date</td>
-                        <td>${mms.date}</td>
-                    </tr>
-                </table>
+        <g:each in="${smsList}" status="i" var="mms">
+            <div class="well">
+                <div class="row">
+                    <div class="span2">Message Identifier</div>
+                    <div class="span8">${mms.messageIdentifier}</div>
+                </div>
+                <div class="row">
+                    <div class="span2">Subject</div>
+                    <div class="span8">${mms.subject}</div>
+                </div>
+
+                <div class="row">
+                    <div class="span2">Message</div>
+                    <div class="span8">${mms.message}</div>
+                </div>
+                <div class="row">
+                    <div class="span2">Origin Alias</div>
+                    <div class="span8">${mms.fromAlias}</div>
+                </div>
+                <div class="row">
+                    <div class="span2">Origin Phone number</div>
+                    <div class="span8">${mms.fromPhoneNumber}</div>
+                </div>
+                <div class="row">
+                    <div class="span2">Destination Phone number</div>
+                    <div class="span8">${mms.toPhoneNumber}</div>
+                </div>
+                <div class="row">
+                    <div class="span2">Date</div>
+                    <div class="span8">${mms.date}</div>
+                </div>
             </div>
         </g:each>
     </div>
+</div>
 </body>
 </html>

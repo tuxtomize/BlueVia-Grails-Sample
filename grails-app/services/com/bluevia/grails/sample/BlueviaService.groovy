@@ -26,11 +26,12 @@ class BlueviaService {
         apiConsumer.sign(connection)
         connection.connect()
 
-        //if (connection.responseCode == HttpURLConnection.HTTP_OK) {
-        if (true) {
-            //def serviceResponse = connection.inputStream.text
-            def serviceResponse = """{"receivedSMS":{"receivedSMS":[{"message":"Redtappe msg 1","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:22:29.086Z"},{"message":"Redtappe msg 2","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:22:43.158Z"}]}}"""
-            //def serviceResponse = """{"receivedSMS":{"receivedSMS":{"message":"Redtappe test with amount 99.90 tags and redtappe #Tag1 #Tag2 #Tag3#Tag4","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:07:36.097Z"}}}"""
+        if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+            def serviceResponse = connection.inputStream.text
+
+            // Some sample json reponses. For testing.
+            // def serviceResponse = """{"receivedSMS":{"receivedSMS":[{"message":"Redtappe msg 1","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:22:29.086Z"},{"message":"Redtappe msg 2","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:22:43.158Z"}]}}"""
+            // def serviceResponse = """{"receivedSMS":{"receivedSMS":{"message":"Redtappe test with amount 99.90 tags and redtappe #Tag1 #Tag2 #Tag3#Tag4","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:07:36.097Z"}}}"""
 
             log.info "BlueVia service response: $serviceResponse"
 
@@ -75,8 +76,9 @@ class BlueviaService {
         connection.connect()
 
         if (connection.responseCode == HttpURLConnection.HTTP_OK) {
-        //if (true) {
             /*
+            Some sample responses.
+
             def serviceResponse = """{"receivedMessages":{
                                     "receivedMessages":[
                                             {

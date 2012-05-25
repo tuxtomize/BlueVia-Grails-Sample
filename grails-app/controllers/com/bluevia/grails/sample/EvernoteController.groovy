@@ -21,17 +21,15 @@ class EvernoteController {
         if (verifier) {
             def oauthResult = evernoteService.oAuthAccessToken(requestToken, verifier)
 
-            // Almacenamos los datos de auth evernote en la cuenta de usuario.
             session.evernoteAccessToken = oauthResult['accessToken']
             session.evernoteShardId = oauthResult['shardId']
 
-            // Creamos el notebook para Redtappe (si no existe aun).
             def redtappeNotebookGuid = evernoteService.createRedtappeNotebookIfNotYetExist(session.evernoteAccessToken, session.evernoteShardId)
             session.redtappeNotebookGuid = redtappeNotebookGuid
 
             log.info "Done!. Evernote user account authenticated."
-            flash.message = "The Evernote inbox is now working for Redtappe. You can store your papers in the 'Redtappe' Evernote notebook."
-            redirect action:'listPendingEvernotes'
+            flash.message = "Done!. Evernote user account authenticated."
+            redirect action:'listNotebooks'
         } else {
             log.error "Evernote access denied."
             flash.message = 'Evernote access denied.'

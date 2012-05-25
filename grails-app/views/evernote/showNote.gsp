@@ -1,54 +1,46 @@
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'evernote.label', default: 'Evernote')}" />
-        <title><g:message code="default.show.label" args="[entityName]" /></title>
-    </head>
-    <body>
-        <div class="nav">
-            <span class="menuButton"><g:link class="home" controller="paper" action="list"><g:message code="default.home.label"/></g:link></span>
-            <span class="menuButton"><g:link class='create' action='oauthLogin'>Authorize Evernote Account</g:link></span>
-            <span class="menuButton"><g:link class="list" action="listNotebooks">List Evernote Notebooks</g:link></span>
+<head>
+    <meta name="layout" content="main" />
+    <title>BlueVia - Evernote Note</title>
+</head>
+<body>
+<div class="container">
+    <g:if test="${flash.message}">
+        <div class="alert alert-info">
+            ${flash.message}
         </div>
-        <div class="body">
-            <h1>Evernote Note detail for '${note.getTitle()}'</h1>
-            <g:if test="${flash.message}">
-                <div class="message">${flash.message}</div>
-            </g:if>
-            <div class="dialog">
-                <table>
-                    <tbody>
-                        <tr class="prop">
-                            <td valign="top" class="name">Guid</td>
-                            <td valign="top" class="value">${note.getGuid()}</td>
-                        </tr>
-                        <tr class="prop">
-                            <td valign="top" class="name">Title</td>
-                            <td valign="top" class="value">${note.getTitle()}</td>
-                        </tr>
-                        <tr class="prop">
-                            <td valign="top" class="name">Created</td>
-                            <td valign="top" class="value">${note.getCreated()}</td>
-                        </tr>
-                        <tr class="prop">
-                            <td valign="top" class="name">Resource Name</td>
-                            <td valign="top" class="value">
-                                <g:link action="downloadResourceContent" id="${note.getResources()?.getAt(0)?.guid}">
-                                    ${note.getResources()?.getAt(0)?.getAttributes()?.getFileName()}
-                                </g:link>
-                            </td>
-                        </tr>
-                        <tr class="prop">
-                            <td valign="top" class="name">Resource Mime</td>
-                            <td valign="top" class="value">${note.getResources()?.getAt(0)?.getMime()}</td>
-                        </tr>
-                    </tbody>
-                </table>
+    </g:if>
+    <div class="hero-unit">
+        <h2>Note detail for <em>${note.title}</em></h2>
+        <br/>
+        <div class="well">
+            <div class="row">
+                <div class="span2">Guid</div>
+                <div class="span8">${note.guid}</div>
             </div>
-            <div class="buttons">
-                <br/>
+            <div class="row">
+                <div class="span2">Title</div>
+                <div class="span8">${note.title}</div>
+            </div>
+            <div class="row">
+                <div class="span2">Created</div>
+                <div class="span8">${note.created}</div>
+            </div>
+            <div class="row">
+                <div class="span2">Resource Name</div>
+                <div class="span8">
+                    <g:link action="downloadResourceContent" id="${note.getResources()?.getAt(0)?.guid}">
+                        ${note.getResources()?.getAt(0)?.getAttributes()?.getFileName()}
+                    </g:link>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2">Resource Mime</div>
+                <div class="span8">${note.getResources()?.getAt(0)?.getMime()}</div>
             </div>
         </div>
-    </body>
+    </div>
+</div>
+</body>
 </html>
+

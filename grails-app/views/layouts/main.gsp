@@ -23,6 +23,14 @@
         <r:layoutResources />
 	</head>
 	<body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="/">BlueVia Grails Sample</a>
+                </div>
+            </div>
+        </div>
+
 		<g:layoutBody/>
 		<g:javascript library="application"/>
         <r:layoutResources />

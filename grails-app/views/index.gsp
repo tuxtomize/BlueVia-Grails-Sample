@@ -6,18 +6,9 @@
     </head>
     
     <body>
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="brand" href="/">BlueVia Grails Sample</a>
-                </div>
-            </div>
-        </div>
-        
         <div class="container">
             <g:if test="${flash.message}">
-                <div class="alert alert-error">
-                    <h4 class="alert-heading">Ouch!</h4>
+                <div class="alert alert-info">
                     ${flash.message}
                 </div>
             </g:if>

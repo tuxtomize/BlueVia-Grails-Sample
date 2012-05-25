@@ -6,7 +6,13 @@ class BlueviaController {
     def inboundSMSs = {
         try {
             def inboundSmss = blueviaInboxService.requestInboundSMSs()
-            blueviaInboxService.processInboundSMSs(inboundSmss)
+
+            if (session.evernoteAccessToken) {
+                blueviaInboxService.processInboundSMSs(inboundSmss, session)
+            } else {
+                flash.message = 'This Inbound messages are not yet stored in Evernote. You need to authenticate your Evernote account first.'
+            }
+
             render view:'listSMSs', model:[smsList: inboundSmss]
         } catch (ex) {
             log.error "BlueVia service connection error", ex
@@ -17,8 +23,9 @@ class BlueviaController {
 
     def inboundMMSs = {
         try {
+            // TODO
             def inboundMmss = blueviaInboxService.requestInboundMMSs()
-            //blueviaInboxService.processInboundMMSs(inboundMmss)
+            // blueviaInboxService.processInboundMMSs(inboundMmss, session)
             render view:'listMMSs', model:[smsList: inboundMmss]
         } catch (ex) {
             log.error "BlueVia service connection error", ex

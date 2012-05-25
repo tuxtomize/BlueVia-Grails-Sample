@@ -1,44 +1,43 @@
 <html>
 <head>
     <meta name="layout" content="main" />
-    <title>Redtappe - Pending Inbound MMS's</title>
+    <title>BlueVia - SMS Inbox</title>
 </head>
 <body>
-    <g:if test="${flash.message}">
-        <div class="alert-message info fade in" data-alert="alert">
-            <a class="close" href="#">×</a>
-            <p>${flash.message}</p>
-        </div>
-    </g:if>
-    <div class="hero-unit">
-        <h2>SMS's</h2>
-        <br/>
-        <g:each in="${smsList}" status="i" var="sms">
-            <div class="well" style="height: 120px;">
-                <table class="condensed-table" style="border-style: hidden;">
-                    <tr>
-                        <td>Message</td>
-                        <td>${sms.message}</td>
-                    </tr>
-                    <tr>
-                        <td>Origin Alias</td>
-                        <td>${sms.fromAlias}</td>
-                    </tr>
-                    <tr>
-                        <td>Origin Phone number</td>
-                        <td>${sms.fromPhoneNumber}</td>
-                    </tr>
-                    <tr>
-                        <td>Destination Phone number</td>
-                        <td>${sms.toPhoneNumber}</td>
-                    </tr>
-                    <tr>
-                        <td>Date</td>
-                        <td>${sms.date}</td>
-                    </tr>
-                </table>
+    <div class="container">
+        <g:if test="${flash.message}">
+            <div class="alert alert-info">
+                ${flash.message}
             </div>
-        </g:each>
+        </g:if>
+        <div class="hero-unit">
+            <h2>SMS's</h2>
+            <br/>
+            <g:each in="${smsList}" status="i" var="sms">
+                <div class="well">
+                    <div class="row">
+                        <div class="span2">Message</div>
+                        <div class="span8">${sms.message}</div>
+                    </div>
+                    <div class="row">
+                        <div class="span2">Origin Alias</div>
+                        <div class="span8">${sms.fromAlias}</div>
+                    </div>
+                    <div class="row">
+                        <div class="span2">Origin Phone number</div>
+                        <div class="span8">${sms.fromPhoneNumber}</div>
+                    </div>
+                    <div class="row">
+                        <div class="span2">Destination Phone number</div>
+                        <div class="span8">${sms.toPhoneNumber}</div>
+                    </div>
+                    <div class="row">
+                        <div class="span2">Date</div>
+                        <div class="span8">${sms.date}</div>
+                    </div>
+                </div>
+            </g:each>
+        </div>
     </div>
 </body>
 </html>
