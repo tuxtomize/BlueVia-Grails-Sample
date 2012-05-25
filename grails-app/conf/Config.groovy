@@ -59,25 +59,14 @@ grails.exceptionresolver.params.exclude = ['password']
 // enable query caching by default
 grails.hibernate.cache.queries = true
 
-// set per-environment serverURL stem for creating absolute links
-environments {
-    development {
-        grails.logging.jul.usebridge = true
-    }
-    production {
-        grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
-    }
-}
-
 // log4j configuration
 log4j = {
-    // Example of changing the log pattern for the default console
-    // appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+    appenders {
+        console name: 'stdout', layout: pattern(conversionPattern: '[%d{dd/MM/yyyy HH:mm:ss} | %-5p | %c{1}] %m%n')
+    }
+
+    debug  'grails.app.services'
+    debug  'grails.app.controllers'
 
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
            'org.codehaus.groovy.grails.web.pages', //  GSP
@@ -90,4 +79,47 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+}
+
+grails.app.context = '/'
+grails.serverURL = "http://localhost:8080"
+
+bluevia {
+    // use your own credentials here
+    // you can get tons of them in https://bluevia.com/en/knowledge/APIs.Get-your-API-key :)
+    consumer.key = 'yN12040835082146'
+    consumer.secret = 'vlyd05395292'
+
+    countryCode.vivo.Brasil = '55281'
+    countryCode.movistar.Spain = '34217040'
+    countryCode.movistar.Argentina = '546780'
+    countryCode.movistar.Chile = '5698765'
+    countryCode.movistar.Colombia = '572505'
+    countryCode.movistar.Mexico = '524040'
+    countryCode.o2.UK = '445480605'
+    countryCode.o2.Germany = '493000'
+
+    smsService.outURL = "https://api.bluevia.com/services/REST/SMS/inbound/${countryCode.movistar.Spain}/messages?version=v1&alt=json"
+    mmsService.outURL = "https://api.bluevia.com/services/REST/MMS/inbound/${countryCode.movistar.Spain}/messages?version=v1&alt=json"
+
+    // requestTokenURL = 'https://api.bluevia.com/services/REST/Oauth/getRequestToken/'
+    // accessTokenURL = 'https://api.bluevia.com/services/REST/Oauth/getAccessToken/'
+    // authoriseURL = 'https://connect.bluevia.com/authorise/'
+    // moKeyword = 'your_app_keyword'
+    // sandboxMOKeyword = 'SANDyour_app_keyword'
+}
+
+evernote {
+    // use your own credentials here
+    // you can get tons of them in http://dev.evernote.com/ :)
+    consumer.key = 'jacortes-7919'
+    consumer.secret = '729fe152a643447a'
+
+    // change to 'https://www.evernote.com' when you are ready to fly
+    urlBase = "https://sandbox.evernote.com"
+
+    noteStoreURLBase = "${urlBase}/edam/note/"
+    requestTokenURL = "${urlBase}/oauth"
+    callbackURL = "${grails.serverURL}/evernote/oauthCallback"
+    authURL = "${urlBase}/OAuth.action?oauth_token="
 }
