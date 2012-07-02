@@ -11,7 +11,7 @@
         </div>
     </g:if>
     <div class="hero-unit">
-        <h2>SMS's</h2>
+        <h2>MMS's</h2>
         <br/>
         <g:each in="${smsList}" status="i" var="mms">
             <div class="well">

@@ -16,6 +16,8 @@ class BlueviaService {
         def oauthConsumerKey = ConfigurationHolder.config.bluevia.consumer.key
         def oauthConsumerSecret = ConfigurationHolder.config.bluevia.consumer.secret
 
+        log.info "BlueVia Service Call: $blueviaBaseURL"
+
         OAuthConsumer apiConsumer = new DefaultOAuthConsumer(oauthConsumerKey, oauthConsumerSecret)
         apiConsumer.setMessageSigner(new HmacSha1MessageSigner())
         apiConsumer.setTokenWithSecret(null,"")
@@ -27,11 +29,12 @@ class BlueviaService {
         connection.connect()
 
         if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+        //if (true) {
             def serviceResponse = connection.inputStream.text
 
             // Some sample json reponses. For testing.
-            // def serviceResponse = """{"receivedSMS":{"receivedSMS":[{"message":"Redtappe msg 1","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:22:29.086Z"},{"message":"Redtappe msg 2","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:22:43.158Z"}]}}"""
-            // def serviceResponse = """{"receivedSMS":{"receivedSMS":{"message":"Redtappe test with amount 99.90 tags and redtappe #Tag1 #Tag2 #Tag3#Tag4","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:07:36.097Z"}}}"""
+            //def serviceResponse = """{"receivedSMS":{"receivedSMS":[{"message":"Redtappe msg 1","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:22:29.086Z"},{"message":"Redtappe msg 2","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:22:43.158Z"}]}}"""
+            //def serviceResponse = """{"receivedSMS":{"receivedSMS":{"message":"Redtappe test with amount 99.90 tags and redtappe #Tag1 #Tag2 #Tag3#Tag4","originAddress":{"alias":"435954FA2B5DA30251CF731741BC99A0"},"destinationAddress":{"phoneNumber":"34217040"},"dateTime":"2012-04-24T18:07:36.097Z"}}}"""
 
             log.info "BlueVia service response: $serviceResponse"
 
@@ -61,9 +64,11 @@ class BlueviaService {
     List<Mms> getPendingMMSs() {
         def mmsList = []
 
-        def blueviaBaseURL = ConfigurationHolder.config.pwbox.bluevia.mmsService.outURL
-        def oauthConsumerKey = ConfigurationHolder.config.pwbox.bluevia.consumer.key
-        def oauthConsumerSecret = ConfigurationHolder.config.pwbox.bluevia.consumer.secret
+        String blueviaBaseURL = ConfigurationHolder.config.bluevia.mmsService.outURL
+        def oauthConsumerKey = ConfigurationHolder.config.bluevia.consumer.key
+        def oauthConsumerSecret = ConfigurationHolder.config.bluevia.consumer.secret
+
+        log.info "BlueVia Service Call: $blueviaBaseURL"
 
         OAuthConsumer apiConsumer = new DefaultOAuthConsumer(oauthConsumerKey, oauthConsumerSecret)
         apiConsumer.setMessageSigner(new HmacSha1MessageSigner())
@@ -76,6 +81,7 @@ class BlueviaService {
         connection.connect()
 
         if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+        //if (true) {
             /*
             Some sample responses.
 
@@ -86,6 +92,7 @@ class BlueviaService {
                                                 "destinationAddress":{"phoneNumber":"524040"},
                                                 "originAddress":{"phoneNumber":"524794786537"},
                                                 "subject":"MYKEYWORD MMS subject",
+                                                "message":"Redtappe mms msg 1",
                                                 "dateTime":"2011-03-21T12:51:01.000-03:00"
                                             },
                                             {

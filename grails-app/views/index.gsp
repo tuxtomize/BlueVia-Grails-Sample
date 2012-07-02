@@ -24,11 +24,12 @@
                     Then, it <strong>uses the Evernote API</strong> to store the BlueVia inbound messages in the default Evernote notebook (for a previously authorized Evernote account).
                 </p>
                 <p>
-                    So, don't forget to obtain and configure your own API keys for both services (<a href="https://bluevia.com/en/knowledge/APIs.Get-your-API-key" target="_blank">BlueVia</a> and <a href="http://dev.evernote.com/" target="_blank">Evernote</a>).
+                    So, don't forget to obtain and configure your own API keys for both services (<a href="https://bluevia.com/en/page/tech" target="_blank">BlueVia</a> and <a href="http://dev.evernote.com/" target="_blank">Evernote</a>).
                 </p>
                 <br/><br/>  
-                <div class="row offset2">
-                    <a class="btn btn-primary btn-large span2" href="/bluevia/inbox"><strong>BlueVia Inbox</strong></a>
+                <div class="row offset1">
+                    <a class="btn btn-primary btn-large span2" href="/bluevia/smsinbox"><strong>BlueVia SMS Inbox</strong></a>
+                    <a class="btn btn-primary btn-large span2" href="/bluevia/mmsinbox"><strong>BlueVia MMS Inbox</strong></a>
                     <a class="btn btn-success btn-large span2" href="/evernote/inbox"><strong>Evernote Store</strong></a>
                 </div>
             </div>

@@ -7,7 +7,8 @@ class UrlMappings {
 			}
 		}
 
-        "/bluevia/inbox" (controller: "bluevia", action:"inboundSMSs")
+        "/bluevia/smsinbox" (controller: "bluevia", action:"inboundSMSs")
+        "/bluevia/mmsinbox" (controller: "bluevia", action:"inboundMMSs")
         "/evernote/inbox" (controller: "evernote",action:"listNotebooks")
 
 		"/"(view:"/index")

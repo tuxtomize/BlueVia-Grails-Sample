@@ -86,7 +86,7 @@ grails.serverURL = "http://localhost:8080"
 
 bluevia {
     // use your own credentials here
-    // you can get tons of them in https://bluevia.com/en/knowledge/APIs.Get-your-API-key :)
+    // you can get tons of them in https://bluevia.com/en/page/tech :)
     consumer.key = '__________ your consumer key here ___________'
     consumer.secret = '__________ your consumer secret here ___________'
 
