@@ -151,6 +151,38 @@ class BlueviaService {
         mms.fromPhoneNumber = jsonMessage.originAddress.phoneNumber
         mms.toPhoneNumber = jsonMessage.destinationAddress.phoneNumber
         mms.date = jsonMessage.dateTime
+
+        if (mms.messageIdentifier) {
+            mms.attachment = getMmsAttachment(mms.messageIdentifier)
+        }
+
         mms
+    }
+
+    private getMmsAttachment(messageId) {
+
+        https://api.bluevia.com/services/REST/SMS/inbound/${countryCode.movistar.Spain}/messages?version=v1&alt=json"
+        String blueviaBaseURL = "https://api.bluevia.com/services/REST/MMS/inbound/34217040/messages/${messageId}?version=v1&alt=json"
+        def oauthConsumerKey = ConfigurationHolder.config.bluevia.consumer.key
+        def oauthConsumerSecret = ConfigurationHolder.config.bluevia.consumer.secret
+
+        log.info "BlueVia Service Call: $blueviaBaseURL"
+
+        OAuthConsumer apiConsumer = new DefaultOAuthConsumer(oauthConsumerKey, oauthConsumerSecret)
+        apiConsumer.setMessageSigner(new HmacSha1MessageSigner())
+        apiConsumer.setTokenWithSecret(null,"")
+
+        HttpURLConnection connection = (HttpURLConnection)new URL(blueviaBaseURL).openConnection()
+        connection.setRequestMethod("GET")
+        connection.setRequestProperty("Accept", "application/json")
+        apiConsumer.sign(connection)
+        connection.connect()
+
+        if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+            def serviceResponse = connection.inputStream.text
+            log.info "BlueVia service response: $serviceResponse"
+        }
+
+        null
     }
 }

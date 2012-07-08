@@ -8,4 +8,5 @@ class Mms {
     def fromPhoneNumber
     def toPhoneNumber
     def date
+    Byte[] attachment
 }
